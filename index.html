@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>stage-on 카카오멤버십 요금제</title>
+<title>카카오멤버십 요금제</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 <style>
@@ -72,10 +72,9 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
 .chip{background:rgba(255,255,255,.55);color:var(--brown);border-radius:999px;padding:5px 11px;font-size:12.5px;font-weight:700}
 .chip.dark{background:var(--brown);color:var(--kakao)}
-.hero-art{display:flex;justify-content:flex-end;align-items:flex-end;gap:0;margin-top:-6px;height:152px}
-.hero-art svg{height:150px;width:auto;display:block}
-.hero-art .ryan{margin-right:-28px;z-index:1}
-.hero-art .peach{height:110px;margin-left:-18px}
+.hero-art{margin:18px 0 14px;perspective:900px;perspective-origin:50% 50%}
+.hero-art img{display:block;width:100%;height:auto;max-width:100%;transform-origin:50% 50%;animation:sway 4.2s ease-in-out infinite alternate;will-change:transform}
+@keyframes sway{from{transform:rotateY(-16deg) rotateZ(-1.5deg) translateY(0)}to{transform:rotateY(16deg) rotateZ(1.5deg) translateY(-4px)}}
 
 /* value strip */
 .strip{background:var(--ink);color:#FFF}
@@ -111,10 +110,9 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 .plan .price .won{font-size:28px;font-weight:900;letter-spacing:-.03em}
 .plan .price .per{font-size:13px;color:var(--muted)}
 .plan .price .forever{margin-left:auto;font-size:12px;font-weight:700;color:var(--ok)}
-.plan .split{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:12.5px;color:var(--muted);
-  background:var(--soft);border-radius:12px;padding:9px 12px}
-.plan .split b{color:var(--fg);font-weight:700}
-.plan .split .tot{border-top:1px dashed var(--line);padding-top:4px;margin-top:2px;grid-column:1/-1;display:flex;justify-content:space-between}
+.plan .incl{font-size:13px;font-weight:600;color:var(--brown);background:var(--soft);border-radius:12px;padding:9px 12px;margin:0}
+:root[data-theme="dark"] .plan .incl{color:var(--fg)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .plan .incl{color:var(--fg)}}
 .specs{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted)}
 .specs span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--kakao-deep);margin-right:6px;vertical-align:1px}
 .plan .check{position:absolute;right:14px;bottom:14px;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center}
@@ -122,26 +120,12 @@ button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 .plan .check svg{width:14px;height:14px;opacity:0}
 .plan[aria-pressed="true"] .check svg{opacity:1}
 
-/* breakdown */
-.breakdown{background:var(--card);border-radius:20px;padding:16px;margin-top:16px;box-shadow:var(--shadow)}
-.breakdown h3{font-size:15px;font-weight:800}
-.bar{display:flex;height:34px;border-radius:10px;overflow:hidden;margin-top:12px;font-size:12px;font-weight:800}
-.bar .seg{display:flex;align-items:center;justify-content:center;white-space:nowrap;min-width:0;overflow:hidden;transition:flex .3s}
-.bar .tel{background:var(--ink);color:#FFF}
-.bar .mem{background:var(--kakao);color:var(--brown)}
-.legend{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin-top:12px;font-size:13.5px}
-.legend .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px;vertical-align:-1px}
-.legend .r{text-align:right;font-weight:700}
-.legend .sum{grid-column:1/-1;display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px;margin-top:2px;font-weight:900;font-size:15px}
-.note{font-size:12px;color:var(--muted);margin-top:10px}
-
 /* membership benefits (카카오멤버십 상품구성 준용) */
-.mem-hero{background:var(--kakao);color:var(--brown);border-radius:22px;padding:18px 16px 0;margin-top:16px;position:relative;overflow:hidden}
+.mem-hero{background:var(--kakao);color:var(--brown);border-radius:22px;padding:18px 16px 18px;margin-top:16px;position:relative;overflow:hidden}
 .mem-hero .tag{display:inline-block;background:var(--brown);color:var(--kakao);font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px}
 .mem-hero h3{font-size:22px;font-weight:900;letter-spacing:-.02em;margin-top:10px}
 .mem-hero p{font-size:13.5px;margin-top:6px;max-width:28ch;font-weight:500}
-.mem-hero .art{display:flex;justify-content:flex-end;margin-top:-30px}
-.mem-hero .art svg{height:96px;width:auto;display:block}
+.mem-link{display:inline-flex;align-items:center;gap:4px;margin-top:14px;background:var(--brown);color:var(--kakao);font-weight:800;font-size:13.5px;padding:10px 14px;border-radius:12px;text-decoration:none}
 .group{margin-top:14px}
 .group-h{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
 .group-h::after{content:"";flex:1;height:1px;background:var(--line)}
@@ -209,60 +193,32 @@ footer b{color:var(--fg)}
 .toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(10px);background:var(--ink);color:var(--kakao);
   padding:10px 16px;border-radius:12px;font-weight:800;font-size:13.5px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:30;max-width:90vw;text-align:center}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
 <body>
 
 <header class="topbar">
   <div class="wrap">
-    <div class="brand"><span class="sf">stage<span style="opacity:.7">-on</span></span><span class="x">×</span><span>카카오멤버십</span></div>
+    <div class="brand"><span class="sf">5G</span><span>카카오멤버십 요금제</span></div>
     <span class="proto">Prototype</span>
   </div>
 </header>
 
 <section class="band yellow hero">
   <div class="wrap">
-    <p class="eyebrow">stage-on 협력 요금제</p>
+    <p class="eyebrow">5G 요금제 + 카카오멤버십</p>
     <h1>통신요금에<br>카카오멤버십이 <em>쏙</em></h1>
     <p class="lead">요금제 하나로 데이터도, 카카오멤버십도 매달 자동으로. 약정 없이 평생 같은 가격이에요.</p>
     <div class="chips">
       <span class="chip dark">카카오멤버십 월 4,900원 포함</span>
       <span class="chip">약정 없음</span>
       <span class="chip">평생 동일 가격</span>
-      <span class="chip">KT망 5G</span>
+      <span class="chip">5G</span>
     </div>
     <div class="hero-art" aria-hidden="true">
-      <!-- 라이언 -->
-      <svg class="ryan" viewBox="0 0 160 150">
-        <circle cx="36" cy="40" r="16" fill="#F7B64A"/><circle cx="36" cy="40" r="8" fill="#E8973A"/>
-        <circle cx="124" cy="40" r="16" fill="#F7B64A"/><circle cx="124" cy="40" r="8" fill="#E8973A"/>
-        <rect x="18" y="26" width="124" height="124" rx="60" fill="#F7B64A"/>
-        <rect x="42" y="62" width="22" height="7" rx="3.5" fill="#3C1E1E"/><rect x="96" y="62" width="22" height="7" rx="3.5" fill="#3C1E1E"/>
-        <circle cx="54" cy="84" r="5" fill="#3C1E1E"/><circle cx="106" cy="84" r="5" fill="#3C1E1E"/>
-        <path d="M72 100 q8 -8 16 0 q-8 6 -16 0z" fill="#3C1E1E"/>
-        <path d="M66 110 q14 10 28 0" stroke="#3C1E1E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-      </svg>
-      <!-- 춘식이 -->
-      <svg class="choonsik" viewBox="0 0 150 150">
-        <path d="M30 60 L24 14 L64 40z" fill="#F6E7A1"/><path d="M120 60 L126 14 L86 40z" fill="#F6E7A1"/>
-        <path d="M30 60 L24 14 L64 40z" fill="none" stroke="#F6E7A1" stroke-width="2"/>
-        <rect x="14" y="34" width="122" height="116" rx="58" fill="#F6E7A1"/>
-        <path d="M68 36 v18 M75 34 v22 M82 36 v18" stroke="#4A3B2B" stroke-width="3.5" stroke-linecap="round"/>
-        <circle cx="52" cy="86" r="5" fill="#3C1E1E"/><circle cx="98" cy="86" r="5" fill="#3C1E1E"/>
-        <ellipse cx="75" cy="100" rx="5" ry="3.5" fill="#E88C9A"/>
-        <path d="M66 108 q4.5 5 9 0 q4.5 5 9 0" stroke="#3C1E1E" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <circle cx="36" cy="104" r="7" fill="#F5C7C0" opacity=".9"/><circle cx="114" cy="104" r="7" fill="#F5C7C0" opacity=".9"/>
-      </svg>
-      <!-- 어피치 -->
-      <svg class="peach" viewBox="0 0 120 110">
-        <rect x="8" y="14" width="104" height="96" rx="48" fill="#F9A6B6"/>
-        <path d="M60 14 q-4 14 2 26" stroke="#E8788F" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <path d="M46 10 q10 -10 18 2" stroke="#6DB36A" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <circle cx="44" cy="58" r="4.5" fill="#3C1E1E"/><circle cx="76" cy="58" r="4.5" fill="#3C1E1E"/>
-        <path d="M52 74 q8 7 16 0" stroke="#3C1E1E" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <circle cx="30" cy="72" r="6" fill="#F27C98" opacity=".7"/><circle cx="90" cy="72" r="6" fill="#F27C98" opacity=".7"/>
-      </svg>
+      <img src="assets/kamem-hero.webp" alt="" width="2000" height="400" decoding="async">
+    </div>
     </div>
   </div>
 </section>
@@ -281,80 +237,48 @@ footer b{color:var(--fg)}
     <p class="sec-desc">표시 가격은 카카오멤버십 월 4,900원이 포함된 금액이에요. 12개월·7개월 할인 같은 조건 없이 처음 가격 그대로 계속 이용해요.</p>
 
     <div class="plans" role="group" aria-label="요금제 선택">
+      <button class="plan" type="button" data-plan="30" aria-pressed="true">
+        <div class="head">
+          <div><div class="data">30<small>GB</small></div><div class="name">스탠다드 · 가장 많이 선택</div></div>
+          <div class="badges"><span class="badge reco">대표 요금제</span><span class="badge kakao">카카오멤버십 포함</span></div>
+        </div>
+        <div class="price"><span class="won num">월 16,000원</span><span class="forever">평생 동일가</span></div>
+        <p class="incl">월 4,900원 상당의 카카오멤버십이 포함된 가격이에요.</p>
+        <div class="specs"><span>음성·문자 기본제공</span><span>소진 후 1Mbps</span><span>테더링 가능</span><span>5G</span></div>
+        <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" stroke="#FEE500" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </button>
       <button class="plan" type="button" data-plan="5" aria-pressed="false">
         <div class="head">
           <div><div class="data">5<small>GB</small></div><div class="name">라이트 · 가볍게 쓰는 분께</div></div>
           <div class="badges"><span class="badge kakao">카카오멤버십 포함</span></div>
         </div>
         <div class="price"><span class="won num">월 5,900원</span><span class="forever">평생 동일가</span></div>
-        <div class="split">
-          <span>통신 요금</span><b class="num">1,000원</b>
-          <span>카카오멤버십</span><b class="num">4,900원</b>
-          <span class="tot"><span>합계</span><b class="num">5,900원</b></span>
-        </div>
-        <div class="specs"><span>음성 100분</span><span>문자 100건</span><span>소진 후 400kbps</span><span>KT망</span></div>
+        <p class="incl">월 4,900원 상당의 카카오멤버십이 포함된 가격이에요.</p>
+        <div class="specs"><span>음성 100분</span><span>문자 100건</span><span>소진 후 400kbps</span><span>5G</span></div>
         <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" stroke="#FEE500" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </button>
-
-      <button class="plan" type="button" data-plan="30" aria-pressed="true">
-        <div class="head">
-          <div><div class="data">30<small>GB</small></div><div class="name">스탠다드 · 가장 많이 선택</div></div>
-          <div class="badges"><span class="badge reco">추천</span><span class="badge kakao">카카오멤버십 포함</span></div>
-        </div>
-        <div class="price"><span class="won num">월 16,000원</span><span class="forever">평생 동일가</span></div>
-        <div class="split">
-          <span>통신 요금</span><b class="num">11,100원</b>
-          <span>카카오멤버십</span><b class="num">4,900원</b>
-          <span class="tot"><span>합계</span><b class="num">16,000원</b></span>
-        </div>
-        <div class="specs"><span>음성·문자 기본제공</span><span>소진 후 1Mbps</span><span>테더링 가능</span><span>KT망</span></div>
-        <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" stroke="#FEE500" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </button>
-
       <button class="plan" type="button" data-plan="50" aria-pressed="false">
         <div class="head">
           <div><div class="data">50<small>GB</small></div><div class="name">플러스 · 영상도 넉넉하게</div></div>
           <div class="badges"><span class="badge kakao">카카오멤버십 포함</span></div>
         </div>
         <div class="price"><span class="won num">월 23,000원</span><span class="forever">평생 동일가</span></div>
-        <div class="split">
-          <span>통신 요금</span><b class="num">18,100원</b>
-          <span>카카오멤버십</span><b class="num">4,900원</b>
-          <span class="tot"><span>합계</span><b class="num">23,000원</b></span>
-        </div>
-        <div class="specs"><span>음성·문자 기본제공</span><span>소진 후 3Mbps</span><span>테더링 가능</span><span>KT망</span></div>
+        <p class="incl">월 4,900원 상당의 카카오멤버십이 포함된 가격이에요.</p>
+        <div class="specs"><span>음성·문자 기본제공</span><span>소진 후 3Mbps</span><span>테더링 가능</span><span>5G</span></div>
         <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" stroke="#FEE500" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </button>
-
       <button class="plan" type="button" data-plan="100" aria-pressed="false">
         <div class="head">
           <div><div class="data">100<small>GB</small></div><div class="name">맥스 · 데이터 걱정 끝</div></div>
           <div class="badges"><span class="badge hot">인기</span><span class="badge kakao">카카오멤버십 포함</span></div>
         </div>
         <div class="price"><span class="won num">월 37,000원</span><span class="forever">평생 동일가</span></div>
-        <div class="split">
-          <span>통신 요금</span><b class="num">32,100원</b>
-          <span>카카오멤버십</span><b class="num">4,900원</b>
-          <span class="tot"><span>합계</span><b class="num">37,000원</b></span>
-        </div>
-        <div class="specs"><span>음성·문자 기본제공</span><span>소진 후 5Mbps</span><span>테더링 가능</span><span>KT망</span></div>
+        <p class="incl">월 4,900원 상당의 카카오멤버십이 포함된 가격이에요.</p>
+        <div class="specs"><span>음성·문자 기본제공</span><span>소진 후 5Mbps</span><span>테더링 가능</span><span>5G</span></div>
         <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" stroke="#FEE500" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </button>
     </div>
 
-    <div class="breakdown" id="breakdown">
-      <h3 id="bd-title">30GB 요금제, 이렇게 구성돼요</h3>
-      <div class="bar" aria-hidden="true">
-        <div class="seg tel" id="bd-tel" style="flex:11100">통신</div>
-        <div class="seg mem" id="bd-mem" style="flex:4900">멤버십</div>
-      </div>
-      <div class="legend">
-        <span><i class="dot" style="background:var(--ink)"></i>stage-on 통신 요금</span><span class="r num" id="bd-tel-v">11,100원</span>
-        <span><i class="dot" style="background:var(--kakao)"></i>카카오멤버십 (단독 가입 시 4,900원)</span><span class="r num">4,900원</span>
-        <span class="sum"><span>매월 결제 금액</span><span class="num" id="bd-sum">16,000원</span></span>
-      </div>
-      <p class="note" id="bd-note">멤버십 단독 가입(월 4,900원)을 빼고 보면 30GB 통신 요금은 월 11,100원이에요.</p>
-    </div>
   </div>
 </section>
 
@@ -367,16 +291,7 @@ footer b{color:var(--fg)}
       <span class="tag">카카오멤버십</span>
       <h3>쇼핑·콘텐츠·금융 혜택을<br>한 번에</h3>
       <p>월 4,900원 상당의 멤버십이 요금제에 들어 있어요. 따로 가입하거나 결제할 필요 없어요.</p>
-      <div class="art" aria-hidden="true">
-        <svg viewBox="0 0 150 120">
-          <rect x="14" y="20" width="122" height="100" rx="50" fill="#F6E7A1"/>
-          <path d="M30 46 L26 8 L60 30z" fill="#F6E7A1"/><path d="M120 46 L124 8 L90 30z" fill="#F6E7A1"/>
-          <path d="M68 24 v16 M75 22 v20 M82 24 v16" stroke="#4A3B2B" stroke-width="3.5" stroke-linecap="round"/>
-          <circle cx="52" cy="70" r="5" fill="#3C1E1E"/><circle cx="98" cy="70" r="5" fill="#3C1E1E"/>
-          <ellipse cx="75" cy="84" rx="5" ry="3.5" fill="#E88C9A"/>
-          <path d="M66 92 q4.5 5 9 0 q4.5 5 9 0" stroke="#3C1E1E" stroke-width="3" fill="none" stroke-linecap="round"/>
-        </svg>
-      </div>
+      <a class="mem-link" href="https://membership.kakao.com/intro" target="_blank" rel="noopener">카카오멤버십 자세히 보기 <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
 
     <div class="group">
@@ -459,7 +374,7 @@ footer b{color:var(--fg)}
 
 <section class="sec" id="telecom">
   <div class="wrap">
-    <div class="sec-title"><h2>stage-on 통신 혜택</h2><span class="sub">KT망 · 5G</span></div>
+    <div class="sec-title"><h2>통신 혜택</h2><span class="sub">5G</span></div>
     <div class="feat">
       <div><span class="ic"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="7" width="18" height="10" rx="2" fill="#3C1E1E"/><rect x="6" y="10" width="4" height="4" rx="1" fill="#FEE500"/></svg></span><b>eSIM 즉시 개통</b><span>QR 한 번으로 바로 사용</span></div>
       <div><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v8m0 0l-4-4m4 4l4-4" stroke="#3C1E1E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 16v3h14v-3" stroke="#3C1E1E" stroke-width="2.2" stroke-linecap="round"/></svg></span><b>번호이동·신규 모두</b><span>기존 번호 그대로 가능</span></div>
@@ -480,7 +395,7 @@ footer b{color:var(--fg)}
     <div class="sec-title"><h2>자주 묻는 질문</h2></div>
     <div class="faq">
       <details><summary>이미 카카오멤버십을 쓰고 있어요</summary><div class="a">개통 시 기존 멤버십은 자동으로 해지되고, 요금제에 포함된 멤버십으로 전환돼요. 남은 기간의 멤버십 요금은 일할 환불돼요.</div></details>
-      <details><summary>멤버십을 빼고 요금제만 쓸 수 있나요?</summary><div class="a">이 협력 요금제는 멤버십이 기본으로 들어 있는 상품이라 분리할 수 없어요. 요금제만 필요하면 stage-on 일반 요금제를 이용해 주세요.</div></details>
+      <details><summary>멤버십을 빼고 요금제만 쓸 수 있나요?</summary><div class="a">이 협력 요금제는 멤버십이 기본으로 들어 있는 상품이라 분리할 수 없어요. 요금제만 필요하면 일반 요금제를 이용해 주세요.</div></details>
       <details><summary>가격이 정말 계속 같은가요?</summary><div class="a">네. 12개월 할인이나 약정 조건 없이 가입 시점 가격이 유지돼요. 요금제를 바꾸면 바꾼 요금제의 가격이 적용돼요.</div></details>
       <details><summary>선택 혜택은 언제 바꿀 수 있나요?</summary><div class="a">이모티콘 플러스와 톡클라우드 130GB 중 하나를 매월 선택할 수 있어요. 다음 달 적용 혜택은 카카오톡 멤버십 메뉴에서 변경해요.</div></details>
     </div>
@@ -488,7 +403,7 @@ footer b{color:var(--fg)}
     <div class="fine">
       <b>유의사항</b>
       <ul>
-        <li>본 페이지는 stage-on × 카카오멤버십 협력 모델 검토용 프로토타입이며, 실제 상품 조건과 다를 수 있어요.</li>
+        <li>본 페이지는 카카오멤버십 요금제 협력 모델 검토용 프로토타입이며, 실제 상품 조건과 다를 수 있어요.</li>
         <li>카카오멤버십 혜택 구성(선택 혜택, 적립률, 월 적립 한도, 실속 혜택, 첫 만남 혜택)은 카카오멤버십 안내 기준이며 카카오 정책에 따라 변경될 수 있어요.</li>
         <li>음성·문자 제공량, 소진 후 속도는 프로토타입 가정값이에요.</li>
         <li>적립 포인트는 쇼핑포인트 월 최대 20,000P, 카카오페이포인트 월 최대 50,000P까지 쌓여요.</li>
@@ -499,8 +414,8 @@ footer b{color:var(--fg)}
 
 <footer>
   <div class="wrap">
-    <b>stage-on</b> by STAGEFIVE · 카카오멤버십 협력 모델 프로토타입<br>
-    KT망 알뜰폰(MVNO) · 고객센터 1600-0000
+    <b>카카오멤버십 요금제</b> · 협력 모델 프로토타입<br>
+    5G 알뜰폰(MVNO) · 고객센터 1600-0000
   </div>
 </footer>
 
@@ -514,7 +429,6 @@ footer b{color:var(--fg)}
 
 <script>
 (function(){
-  var MEMBERSHIP = 4900;
   var PLANS = {
     "5":   {gb:"5GB",   price:5900},
     "30":  {gb:"30GB",  price:16000},
@@ -526,14 +440,7 @@ footer b{color:var(--fg)}
   var choice = "emoticon";
 
   function render(){
-    var p = PLANS[selected], tel = p.price - MEMBERSHIP;
-    document.getElementById("bd-title").textContent = p.gb + " 요금제, 이렇게 구성돼요";
-    document.getElementById("bd-tel").style.flex = tel;
-    document.getElementById("bd-mem").style.flex = MEMBERSHIP;
-    document.getElementById("bd-tel-v").textContent = won(tel);
-    document.getElementById("bd-sum").textContent = won(p.price);
-    document.getElementById("bd-note").textContent =
-      "멤버십 단독 가입(월 " + won(MEMBERSHIP) + ")을 빼고 보면 " + p.gb + " 통신 요금은 월 " + won(tel) + "이에요.";
+    var p = PLANS[selected];
     document.getElementById("cta-text").textContent = p.gb + " · 월 " + won(p.price);
   }
 
